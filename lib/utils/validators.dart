@@ -13,7 +13,9 @@ const String enterValidEmail = "Enter valid email";
 const String enterValid = "Enter valid ";
 const String enterEmail = "Enter email";
 const String enterPassword = "Enter password";
+const String enterValidCode = "Enter valid code";
 const String enterValidPassword = "Enter valid password";
+const String enterValidPhone = "Enter Valid Phone Number";
 const String emptyMessage = "Can't be Empty";
 const String passwordValidationMsg =
     "Minimum 6 characters,include upper and lower case letters,numbers,symbols(@,#,\$,%)";
@@ -37,9 +39,9 @@ class ValidatorUtil {
   }
 
   static String validateEmail(
-    String value, {
-    String invalidMessage,
-  }) {
+      String value, {
+        String invalidMessage,
+      }) {
     nsuLogs("validateEmail : $value ");
 
     if (value.isEmpty) return enterEmail;
@@ -73,6 +75,27 @@ class ValidatorUtil {
     if (value.isEmpty) return emptyMessage;
 
     return null;
+  }
+
+  static String validateInviteCode(String value) {
+    if (value.isEmpty) return emptyMessage;
+
+    if (value.length < 6) {
+      return enterValidCode;
+    }
+
+    return null;
+  }
+
+  static String validatePhone(String value) {
+    if (value.isEmpty) return emptyMessage;
+
+    if (value.contains("/") || value.contains(".") || value.contains(",")) {
+      return enterValidPhone;
+    }
+    if (value.length < 10) {
+      return enterValidPhone;
+    }
   }
 
   static String validateEmpty(String value, String label) {
