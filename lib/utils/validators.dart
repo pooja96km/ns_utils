@@ -5,6 +5,8 @@ const Pattern namePattern = r"^[a-zA-Z. ']+$";
 
 const Pattern passwordPattern = r'^[a-zA-Z0-9@#$%]{6,}$';
 
+const Pattern phonePattern = r'^\([2-9][\d]{2}\) [\d]{3}-[\d]{4}$';
+
 const Pattern emailPattern =
     r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
 
@@ -88,14 +90,13 @@ class ValidatorUtil {
   }
 
   static String validatePhone(String value) {
-    if (value.isEmpty) return emptyMessage;
-
+    if (value.isNotEmpty && value.length < 12) {
+      return enterValidPhone;
+    }
     if (value.contains("/") || value.contains(".") || value.contains(",")) {
       return enterValidPhone;
     }
-    if (value.length < 10) {
-      return enterValidPhone;
-    }
+    if (hasMatch(pattern: passwordPattern, value: value)) return enterValidPhone;
   }
 
   static String validateEmpty(String value, String label) {
