@@ -5,7 +5,8 @@ const Pattern namePattern = r"^[a-zA-Z. ']+$";
 
 const Pattern passwordPattern = r'^[a-zA-Z0-9@#$%]{6,}$';
 
-const Pattern phonePattern = r'^\([2-9][\d]{2}\) [\d]{3}-[\d]{4}$';
+const Pattern inviteCodePattern = r'^[a-zA-Z0-9]{6,}$';
+
 
 const Pattern emailPattern =
     r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
@@ -17,7 +18,6 @@ const String enterEmail = "Enter email";
 const String enterPassword = "Enter password";
 const String enterValidCode = "Enter valid code";
 const String enterValidPassword = "Enter valid password";
-const String enterValidPhone = "Enter Valid Phone Number";
 const String emptyMessage = "Can't be Empty";
 const String passwordValidationMsg =
     "Minimum 6 characters,include upper and lower case letters,numbers,symbols(@,#,\$,%)";
@@ -74,29 +74,17 @@ class ValidatorUtil {
   }
 
   static String validateEmptyCheck(String value) {
-    if (value.isEmpty) return emptyMessage;
+    if (value.trim().isEmpty) return emptyMessage;
 
     return null;
   }
 
   static String validateInviteCode(String value) {
-    if (value.isEmpty) return emptyMessage;
+    if (value.trim().isEmpty) return emptyMessage;
 
-    if (value.length < 6) {
-      return enterValidCode;
-    }
+    if (hasMatch(pattern: inviteCodePattern, value: value)) return null;
 
-    return null;
-  }
-
-  static String validatePhone(String value) {
-    if (value.isNotEmpty && value.length < 12) {
-      return enterValidPhone;
-    }
-    if (value.contains("/") || value.contains(".") || value.contains(",")) {
-      return enterValidPhone;
-    }
-    if (hasMatch(pattern: passwordPattern, value: value)) return enterValidPhone;
+    return enterValidCode;
   }
 
   static String validateEmpty(String value, String label) {
@@ -117,4 +105,6 @@ class ValidatorUtil {
 
     return result;
   }
+
+
 }
