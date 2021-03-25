@@ -14,6 +14,7 @@ const Pattern emailPattern =
 const String enter = "Enter ";
 const String enterValidEmail = "Enter valid email";
 const String enterValid = "Enter valid ";
+const String enterValidName = "Enter valid name";
 const String enterEmail = "Enter email";
 const String enterPassword = "Enter password";
 const String enterValidCode = "Enter valid code";
@@ -63,14 +64,14 @@ class ValidatorUtil {
     return passwordValidationMsg;
   }
 
-  static String validateName(String value, String label) {
+  static String validateName(String value) {
     nsuLogs("validateName : $value ");
 
-    if (value.isEmpty) return enter + label;
+    if (value.trim().isEmpty) return enterValidName;
 
     if (hasMatch(pattern: namePattern, value: value)) return null;
 
-    return enterValid + label;
+    return enterValidName;
   }
 
   static String validateEmptyCheck(String value) {
@@ -105,6 +106,5 @@ class ValidatorUtil {
 
     return result;
   }
-
 
 }
