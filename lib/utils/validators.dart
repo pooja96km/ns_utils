@@ -7,7 +7,6 @@ const Pattern passwordPattern = r'^[a-zA-Z0-9@#$%]{6,}$';
 
 const Pattern inviteCodePattern = r'^[a-zA-Z0-9]{6,}$';
 
-
 const Pattern emailPattern =
     r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
 
@@ -64,14 +63,14 @@ class ValidatorUtil {
     return passwordValidationMsg;
   }
 
-  static String validateName(String value) {
+  static String validateName(String value, String label) {
     nsuLogs("validateName : $value ");
 
-    if (value.trim().isEmpty) return enterValidName;
+    if (value.trim().isEmpty) return enter + label;
 
     if (hasMatch(pattern: namePattern, value: value)) return null;
 
-    return enterValidName;
+    return enterValid + label;
   }
 
   static String validateEmptyCheck(String value) {
@@ -106,5 +105,6 @@ class ValidatorUtil {
 
     return result;
   }
+
 
 }
