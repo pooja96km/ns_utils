@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ns_utils/utils/logs.dart';
 
-const Pattern namePattern = r"^[a-zA-Z. ']+$";
+const Pattern namePattern = r"^[a-zA-Z.']+$";
 
 const Pattern passwordPattern = r'^[a-zA-Z0-9@#$%]{6,}$';
 
